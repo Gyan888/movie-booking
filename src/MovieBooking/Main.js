@@ -1,10 +1,14 @@
+
+import React from 'react';
+import DrawGrid from "./DrawGrid";
+import "./styles/GlobalStyles.css"
 class Main extends React.Component {
   
     constructor() {
       super();
         this.state = {
         seat: [
-          'Front1','Front2','Front3',
+          'seat1','seat2','seat3',
           'Middle1','Middle2','Middle3',
           'Back1','Back2','Back3'
         ],
@@ -17,16 +21,16 @@ class Main extends React.Component {
       }
     }
     
-    onClickData(seat) {
+    onClickData=(seat) =>{
       if(this.state.seatReserved.indexOf(seat) > -1 ) {
         this.setState({
           seatAvailable: this.state.seatAvailable.concat(seat),
-          seatReserved: this.state.seatReserved.filter(res => res != seat)
+          seatReserved: this.state.seatReserved.filter(res => res !== seat)
         })
       } else {
         this.setState({
           seatReserved: this.state.seatReserved.concat(seat),
-          seatAvailable: this.state.seatAvailable.filter(res => res != seat)
+          seatAvailable: this.state.seatAvailable.filter(res => res !== seat)
         })
       }
     }
@@ -39,7 +43,7 @@ class Main extends React.Component {
             seat = { this.state.seat }
             available = { this.state.seatAvailable }
             reserved = { this.state.seatReserved }
-            onClickData = { this.onClickData.bind(this) }
+            onClickData = { this.onClickData }
             />
         </div>
       )
