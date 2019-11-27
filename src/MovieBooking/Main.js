@@ -2,23 +2,26 @@
 import React from 'react';
 import DrawGrid from "./DrawGrid";
 import "./styles/GlobalStyles.css"
+import { getAllSeats } from './services/seatsServices';
 class Main extends React.Component {
   
     constructor() {
       super();
         this.state = {
-        seat: [
-          'seat1','seat2','seat3',
-          'Middle1','Middle2','Middle3',
-          'Back1','Back2','Back3'
-        ],
-        seatAvailable: [
-          'Front1','Front2','Front3',
-          'Middle1','Middle2','Middle3',
-          'Back1','Back2','Back3'
-        ],
+        seat: [],
+        seatAvailable: [],
         seatReserved: []
       }
+    }
+
+    async UNSAFE_componentWillMount(){
+      let result=await getAllSeats();
+      console.log(result);
+      this.setState({
+        seat:result.map((seat)=>seat.SeatName),
+        seatAvailable:result.filter((seats)=>seats.is_reserved===false).map((seat)=>seat.SeatName),
+        seatReserved:result.filter((seats)=>seats.is_reserved===true).map((seat)=>seat.SeatName)
+      })      
     }
     
     onClickData=(seat) =>{

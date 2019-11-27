@@ -1,17 +1,17 @@
-export async function getSalesforceUsers(params) {
-    let url = `localhost:3000/seats`;
+export async function getAllSeats() {
+    let url = `${process.env.REACT_APP_API_URL}/seats`;
     return fetch(url, {
         method: "GET",
         headers:{
           'Content-Type': "application/json",
-        },
-        body:JSON.stringify(params)
+        }
       })
       .then(response=>{
-        return response.json()
-      })
-      .catch(error=>{
-        return Promise.reject(error)
+        console.log("response =>",response);
+        if (!response.ok) {
+          console.log("HTTP error, status = " + response.status);
+        }
+        return response.json()  
       })
   }
   

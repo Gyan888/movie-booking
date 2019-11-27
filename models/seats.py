@@ -1,9 +1,9 @@
-from app import db
+from app import db,ma
 from marshmallow import Schema, fields, pre_load, validate
-from flask_marshmallow import Marshmallow
 
 
-ma = Marshmallow()
+
+
 
 
 class Seats(db.Model):
@@ -22,4 +22,4 @@ class Seats(db.Model):
 
 class SeatSchema(ma.Schema):
     class Meta:
-        fields=['SeatName','is_reserved']
+        fields = ('SeatName', 'is_reserved')

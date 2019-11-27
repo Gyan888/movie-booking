@@ -7,4 +7,5 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DEVELOPMENT = True
     DEBUG = True
+    CORS_HEADERS='Content-Type'
     
