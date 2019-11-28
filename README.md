@@ -25,7 +25,7 @@ Your app is ready to be deployed!
 
 
 ### `python app.py`
-This will start the backend part of the server 
+This will start the application and ready to use
 
 
 #### `npm start`
