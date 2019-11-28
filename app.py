@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-from flask import Flask, render_template,jsonify
+from flask import Flask, render_template,jsonify,request
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from flask_marshmallow import Marshmallow
@@ -23,9 +23,14 @@ def getSeats():
     result=seatSchema.jsonify(allSeats)  
     return result
 
-# @app.route('/seats',method=['PUT'])    
-# @cross_origin()
-# def updateSeats():
+
+
+@app.route('/seats',methods=['PUT'])    
+@cross_origin()
+def updateSeats():
+    data=request.json();
+    
+    
     
     
 

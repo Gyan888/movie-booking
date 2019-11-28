@@ -127,7 +127,8 @@ class Main extends React.Component {
           <h1>Movie Ticket Reservation</h1>
           <Button type='Submit' onClick={()=>{
             this.setState({
-              openDialogBox:true
+              openDialogBox:true,
+              email:""
             })
           }} variant="contained" size="large" color="primary" className="button" >
             Book Ticket
