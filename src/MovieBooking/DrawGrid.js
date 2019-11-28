@@ -1,5 +1,11 @@
 import React from 'react';
 import "./styles/GlobalStyles.css"
+import { Grid } from '@material-ui/core';
+
+
+
+
+
 
 function AvailableList(props){
     const seatCount = props.available.length;
@@ -26,12 +32,8 @@ function ReservedList(props){
 }
 
 class DrawGrid extends React.Component {
-    constructor(props){
-        super(props)
-        console.log("props ",props);        
-    }
 
-    
+  
     render() {
       return (
          <div className="container">          
@@ -43,11 +45,16 @@ class DrawGrid extends React.Component {
                       className={this.props.reserved.indexOf(row) > -1? 'reserved': 'available'}
                       key={row} onClick = {e => this.props.onClickData(row)}>{row} </td>) }
                 </tr>
+                <Grid container spacing={2} >
+                  <Grid item xs={6} sm={6}>
+                    <AvailableList available = { this.props.available } />
+                  </Grid>
+                  <Grid item xs={6} sm={6}>
+                    <ReservedList reserved = { this.props.reserved } />
+                  </Grid>
+                </Grid>
             </tbody>
-          </table>
-          
-          <AvailableList available = { this.props.available } />
-          <ReservedList reserved = { this.props.reserved } />
+          </table>                                      
          </div>
       )
     }

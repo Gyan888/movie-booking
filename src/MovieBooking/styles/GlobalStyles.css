@@ -43,6 +43,10 @@ h1 {
   color: #333;
 }
 
+.button{
+  margin: 5px
+}
+
 li {
   list-style: none;
 }

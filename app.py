@@ -23,9 +23,10 @@ def getSeats():
     result=seatSchema.jsonify(allSeats)  
     return result
 
-@app.route('/seats',method=['PUT'])    
-@cross_origin()
-def updateSeats():
+# @app.route('/seats',method=['PUT'])    
+# @cross_origin()
+# def updateSeats():
+    
     
 
 @app.route("/")
