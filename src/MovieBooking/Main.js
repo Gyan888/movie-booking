@@ -2,7 +2,7 @@
 import React from 'react';
 import DrawGrid from "./DrawGrid";
 import "./styles/GlobalStyles.css"
-import { getAllSeats } from './services/seatsServices';
+import { getAllSeats, SetReservedSeat } from './services/seatsServices';
 import {  Button} from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,6 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+
 
 
 function Dialogbox(props) {
@@ -82,11 +83,17 @@ class Main extends React.Component {
     }
     
 
-    handleEmailSubmit=(e)=>{
-      console.log("Email submit")
+    handleEmailSubmit=async(e)=>{
+      let result=await SetReservedSeat({"data":this.state.seatReserved,
+      "email":this.state.email})
+      let msg= "Updated successfully"
+      if (result.status!==200){
+        msg= "Can not update"
+      }      
       this.setState({
         openDialogBox:false
       })
+      return msg
     }
 
     handleEmailChange=(e)=>{

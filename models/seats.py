@@ -1,10 +1,4 @@
 from app import db,ma
-from marshmallow import Schema, fields, pre_load, validate
-
-
-
-
-
 
 class Seats(db.Model):
     __tablename__ = 'Seats'

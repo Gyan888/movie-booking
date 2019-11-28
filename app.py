@@ -28,9 +28,14 @@ def getSeats():
 @app.route('/seats',methods=['PUT'])    
 @cross_origin()
 def updateSeats():
-    data=request.json();
-    
-    
+    data=request.json['data'];
+    email=request.json['email']
+    print ("data ",data,"email ",email)
+    for i in Seats.query.filter(Seats.SeatName.in_(data)).all():
+        i.is_reserved=True
+        db.session.add(i)
+        db.session.commit()
+    return jsonify({"status":200,"data":"success"})
     
     
 
