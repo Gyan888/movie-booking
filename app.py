@@ -6,12 +6,13 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS, cross_origin
-
+from flask_mail import Mail, Message
 
 
 app = Flask(__name__,template_folder='build',static_folder='build/static')
 app.config.from_object(Config)
 db = SQLAlchemy(app)
+mail = Mail(app)
 ma = Marshmallow()
 from models.seats import *
 
@@ -29,12 +30,14 @@ def getSeats():
 @cross_origin()
 def updateSeats():
     data=request.json['data'];
-    email=request.json['email']
-    print ("data ",data,"email ",email)
+    fields=request.json['field']
+    msg = Message('Hello {}'.format(fields['name']), sender = Config.MAIL_USERNAME, recipients = [fields['email']])    
     for i in Seats.query.filter(Seats.SeatName.in_(data)).all():
         i.is_reserved=True
         db.session.add(i)
         db.session.commit()
+    msg.body= 'your seat {}  booked Thanks!'.format(",".join(data))
+    mail.send(msg)
     return jsonify({"status":200,"data":"success"})
     
     

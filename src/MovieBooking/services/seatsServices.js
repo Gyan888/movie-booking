@@ -1,3 +1,5 @@
+import { throwError } from "rxjs";
+
 export async function getAllSeats() {
     let url = `${process.env.REACT_APP_API_URL}/seats`;
     return fetch(url, {
@@ -27,7 +29,7 @@ export async function SetReservedSeat(data){
   }).then(response=>{
     console.log("response =>",response);
     if (!response.ok) {
-      console.log("HTTP error, status = " + response.status);
+      throwError("No data")
     }
     return response.json() 
   })

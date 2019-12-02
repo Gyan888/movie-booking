@@ -45,16 +45,16 @@ class DrawGrid extends React.Component {
                       className={this.props.reserved.indexOf(row) > -1? 'reserved': 'available'}
                       key={row} onClick = {e => this.props.onClickData(row)}>{row} </td>) }
                 </tr>
-                <Grid container spacing={2} >
-                  <Grid item xs={6} sm={6}>
-                    <AvailableList available = { this.props.available } />
-                  </Grid>
-                  <Grid item xs={6} sm={6}>
-                    <ReservedList reserved = { this.props.reserved } />
-                  </Grid>
-                </Grid>
             </tbody>
-          </table>                                      
+          </table>
+              <Grid container spacing={2} >
+                <Grid item xs={6} sm={6}>
+                  <AvailableList available = { this.props.available } />
+                </Grid>
+                <Grid item xs={6} sm={6}>
+                  <ReservedList reserved = { this.props.reserved } />
+                </Grid>
+              </Grid>                                    
          </div>
       )
     }
