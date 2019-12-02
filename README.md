@@ -14,7 +14,7 @@ This will install all the python requirements for python
 ### `npm install `
 This will install npm dependecies
 
-### 'sending mail configuration'
+### `sending mail configuration`
 edit config.py <br />
 Add your gmail username and password <br />
 Note that the built-insecurity features in Gmail service may block this login attempt. You may have to decrease the security level. Please log in to<br />
